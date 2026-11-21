@@ -20,8 +20,11 @@ export const operator = {
 
 export const legalEffectiveDate = "October 25, 2026";
 
+/** Minimum $ANCHOR holding for holder tools. Change this one number to update every mention on the site. */
+export const MEMBERS_MIN_TOKENS = 5_000;
+export const MEMBERS_MIN = `${MEMBERS_MIN_TOKENS.toLocaleString("en-US")} $ANCHOR`;
+
 /** Holder tools on memecoindev.vip. */
-export const MEMBERS_MIN = "500,000 $ANCHOR";
 export const tools = [
   {
     key: "members",
@@ -29,7 +32,7 @@ export const tools = [
     title: "Members area",
     url: "https://memecoindev.vip/members",
     host: "memecoindev.vip/members",
-    body: "Sign in with your Solana wallet (one free signed message, no transaction). Hold at least 500,000 $ANCHOR to get in: early tools and notes before they go public.",
+    body: `Sign in with your Solana wallet (one free signed message, no transaction). Hold at least ${MEMBERS_MIN} to get in: early tools and notes before they go public.`,
   },
   {
     key: "desk",
@@ -180,7 +183,7 @@ export const faqs = [
   },
   {
     q: "How do I get into the members area and Anchor Desk?",
-    a: "Hold at least 500,000 $ANCHOR in a Solana wallet, open memecoindev.vip/members or desk.memecoindev.vip and sign in with your wallet. Signing in is one free message: no transaction, and we never ask for your seed phrase.",
+    a: `Hold at least ${MEMBERS_MIN} in a Solana wallet, open memecoindev.vip/members or desk.memecoindev.vip and sign in with your wallet. Signing in is one free message: no transaction, and we never ask for your seed phrase.`,
   },
   {
     q: "What are the token transaction taxes?",
