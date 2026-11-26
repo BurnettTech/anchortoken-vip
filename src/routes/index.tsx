@@ -9,6 +9,11 @@ import {
   solana,
   tools,
 } from "@/data/content";
+import { ArrowUpRight } from "lucide-react";
+import { HeroBackdrop } from "@/components/HeroBackdrop";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import {
   ComingSoonBanner,
   CopyButton,
@@ -33,41 +38,68 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <div className="flex flex-col gap-14">
-      <section className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_16rem]">
-        <div>
-          <div className="flex flex-wrap items-center gap-3">
-            <Kicker>Official $ANCHOR · Solana</Kicker>
-            <StatusBadge live label={solana.statusLabel} />
-          </div>
-          <h1 className="mt-3 font-display text-6xl tracking-wide text-fg">
-            <span className="bg-gradient-to-b from-fg to-neon bg-clip-text text-transparent">
-              ANCHOR
-            </span>
-          </h1>
-          <p className="mt-4 max-w-xl text-lg text-fg">
-            Official anti-rug token, live on Solana via Pump.fun. Zero dev
-            allocation. Holders get the members area and Anchor Desk.
-          </p>
-          <p className="mt-3 max-w-xl text-muted">{solana.statusDetail}</p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <OutLink href={solana.pumpUrl}>Buy on Pump.fun</OutLink>
-            <OutLink href={socials.discord} variant="ghost">
-              Join Discord
-            </OutLink>
-            {socials.x.map((account) => (
-              <OutLink key={account.handle} href={account.url} variant="ghost">
-                Follow {account.handle}
+      <section className="relative grid items-start gap-8 overflow-hidden lg:grid-cols-[minmax(0,1fr)_16rem]">
+        <HeroBackdrop />
+        <div className="relative z-10">
+          <BlurFade delay={0} offset={14} inView>
+            <div className="flex flex-wrap items-center gap-3">
+              <Kicker>Official $ANCHOR · Solana</Kicker>
+              <StatusBadge live label={solana.statusLabel}>
+                <BorderBeam
+                  colorFrom="#00ff66"
+                  colorTo="#22c55e"
+                  size={36}
+                  duration={7}
+                  borderWidth={1}
+                />
+              </StatusBadge>
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.18} offset={14} inView>
+            <h1 className="mt-3 font-display text-6xl tracking-wide text-fg">
+              <span className="bg-gradient-to-b from-fg to-neon bg-clip-text text-transparent">
+                ANCHOR
+              </span>
+            </h1>
+          </BlurFade>
+          <BlurFade delay={0.36} offset={14} inView>
+            <p className="mt-4 max-w-xl text-lg text-fg">
+              Official anti-rug token, live on Solana via Pump.fun. Zero dev
+              allocation. Holders get the members area and Anchor Desk.
+            </p>
+          </BlurFade>
+          <BlurFade delay={0.5} offset={14} inView>
+            <p className="mt-3 max-w-xl text-muted">{solana.statusDetail}</p>
+          </BlurFade>
+          <BlurFade delay={0.68} offset={14} inView>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <ShimmerButton
+                href={solana.pumpUrl}
+                shimmerColor="#f3f4f6"
+                background="#00ff66"
+                className="min-h-11 border-emerald/50 text-sm font-semibold text-neon-ink shadow-[0_0_20px_rgba(0,255,102,0.45)] hover:shadow-[0_0_32px_rgba(0,255,102,0.7)]"
+              >
+                Buy on Pump.fun
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </ShimmerButton>
+              <OutLink href={socials.discord} variant="ghost">
+                Join Discord
               </OutLink>
-            ))}
-            <Link
-              to="/solana"
-              className="inline-flex min-h-11 items-center border border-line bg-surface px-4 text-sm font-semibold text-muted hover:border-neon hover:text-fg"
-            >
-              Token details →
-            </Link>
-          </div>
+              {socials.x.map((account) => (
+                <OutLink key={account.handle} href={account.url} variant="ghost">
+                  Follow {account.handle}
+                </OutLink>
+              ))}
+              <Link
+                to="/solana"
+                className="btn-lift inline-flex min-h-11 items-center border border-line bg-surface px-4 text-sm font-semibold text-muted transition-transform duration-300 hover:-translate-y-1 hover:border-neon hover:text-fg"
+              >
+                Token details →
+              </Link>
+            </div>
+          </BlurFade>
         </div>
-        <figure className="w-fit justify-self-center lg:justify-self-end">
+        <figure className="relative z-10 w-fit justify-self-center lg:justify-self-end">
           <img
             src="/anchor-coin.png"
             alt="Anchor Token logo"
