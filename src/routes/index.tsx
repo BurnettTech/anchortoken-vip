@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <div className="flex flex-col gap-14">
-      <section className="relative grid items-start gap-8 overflow-hidden lg:grid-cols-[minmax(0,1fr)_16rem]">
+      <section className="relative grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_16rem]">
         <HeroBackdrop />
         <div className="relative z-10">
           <BlurFade delay={0} offset={14} inView>
