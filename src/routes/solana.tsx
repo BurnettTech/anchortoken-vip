@@ -1,5 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
 import { faqs, rules, socials, solana, wallets } from "@/data/content";
+import { SolanaBackdrop } from "@/components/SolanaBackdrop";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import {
   CopyButton,
   Kicker,
@@ -30,30 +35,61 @@ function SolanaPage() {
 
   return (
     <div className="flex flex-col gap-14">
-      <section>
-        <div className="flex flex-wrap items-center gap-3">
-          <Kicker>Official $ANCHOR · Solana</Kicker>
-          <StatusBadge live label={solana.statusLabel} />
-        </div>
-        <h1 className="mt-3 font-display text-5xl tracking-wide text-fg sm:text-6xl">
-          Fair launch via Pump.fun
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-fg">{solana.statusDetail}</p>
-        <p className="mt-3 max-w-2xl text-muted">
-          Zero dev allocations. Zero insider snipes. Deployed via standard
-          Pump.fun protocol tools. This is the only official $ANCHOR.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-2">
-          <OutLink href={solana.pumpUrl}>Open on Pump.fun</OutLink>
-          <OutLink href={solana.solscanUrl} variant="ghost">
-            View on Solscan
-          </OutLink>
-          <Link
-            to="/"
-            className="inline-flex min-h-11 items-center border border-line bg-surface px-4 text-sm font-semibold text-muted hover:border-neon hover:text-fg"
-          >
-            ← Home
-          </Link>
+      <section className="relative">
+        <SolanaBackdrop />
+        <div className="relative z-10">
+          <BlurFade delay={0} offset={14} inView>
+            <div className="flex flex-wrap items-center gap-3">
+              <Kicker>Official $ANCHOR · Solana</Kicker>
+              <StatusBadge live label={solana.statusLabel}>
+                <BorderBeam
+                  colorFrom="#00ff66"
+                  colorTo="#9945FF"
+                  size={36}
+                  duration={7}
+                  borderWidth={1}
+                />
+              </StatusBadge>
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.18} offset={14} inView>
+            <h1 className="mt-3 font-display text-5xl tracking-wide text-fg sm:text-6xl">
+              <span className="bg-gradient-to-r from-fg via-neon to-[#14F195] bg-clip-text text-transparent">
+                Fair launch via Pump.fun
+              </span>
+            </h1>
+          </BlurFade>
+          <BlurFade delay={0.36} offset={14} inView>
+            <p className="mt-4 max-w-2xl text-lg text-fg">{solana.statusDetail}</p>
+          </BlurFade>
+          <BlurFade delay={0.5} offset={14} inView>
+            <p className="mt-3 max-w-2xl text-muted">
+              Zero dev allocations. Zero insider snipes. Deployed via standard
+              Pump.fun protocol tools. This is the only official $ANCHOR.
+            </p>
+          </BlurFade>
+          <BlurFade delay={0.68} offset={14} inView>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <ShimmerButton
+                href={solana.pumpUrl}
+                shimmerColor="#f3f4f6"
+                background="#00ff66"
+                className="min-h-11 border-emerald/50 text-sm font-semibold text-neon-ink shadow-[0_0_20px_rgba(0,255,102,0.45)] hover:shadow-[0_0_32px_rgba(0,255,102,0.7)]"
+              >
+                Open on Pump.fun
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </ShimmerButton>
+              <OutLink href={solana.solscanUrl} variant="ghost">
+                View on Solscan
+              </OutLink>
+              <Link
+                to="/"
+                className="btn-lift inline-flex min-h-11 items-center border border-line bg-surface px-4 text-sm font-semibold text-muted transition-transform duration-300 hover:-translate-y-1 hover:border-neon hover:text-fg"
+              >
+                ← Home
+              </Link>
+            </div>
+          </BlurFade>
         </div>
       </section>
 
@@ -63,7 +99,14 @@ function SolanaPage() {
         <SectionTitle kicker="Contract" title="Solana contract address">
           Copy only from this site. Launched {solana.launched}.
         </SectionTitle>
-        <div className="mt-6 border border-neon/30 bg-surface p-5">
+        <div className="relative mt-6 overflow-hidden border border-neon/30 bg-surface p-5">
+          <BorderBeam
+            colorFrom="#00ff66"
+            colorTo="#14F195"
+            size={70}
+            duration={8}
+            borderWidth={1}
+          />
           <p className="text-xs font-semibold tracking-widest text-neon uppercase">
             {solana.venue} · {solana.chain}
           </p>
