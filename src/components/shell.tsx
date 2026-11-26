@@ -182,13 +182,15 @@ export function SectionTitle({
 export function StatusBadge({
   live,
   label,
+  children,
 }: {
   live: boolean;
   label: string;
+  children?: ReactNode;
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-2 border px-3 py-1.5 text-xs font-bold tracking-wide uppercase ${
+      className={`relative inline-flex items-center gap-2 overflow-hidden border px-3 py-1.5 text-xs font-bold tracking-wide uppercase ${
         live
           ? "border-neon/40 bg-neon/10 text-neon"
           : "border-amber/40 bg-amber/10 text-amber"
@@ -203,6 +205,7 @@ export function StatusBadge({
         aria-hidden="true"
       />
       {label}
+      {children}
     </span>
   );
 }
@@ -297,7 +300,7 @@ export function OutLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className={`inline-flex min-h-11 items-center gap-2 px-4 text-sm font-semibold ${cls}`}
+      className={`btn-lift inline-flex min-h-11 items-center gap-2 px-4 text-sm font-semibold transition-transform duration-300 hover:-translate-y-1 ${cls}`}
     >
       {children}
       <ArrowUpRight className="size-4" aria-hidden="true" />
